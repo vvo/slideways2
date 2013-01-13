@@ -17,8 +17,8 @@ function Slider (opts) {
     this.snap = opts.snap;
     
     process.nextTick(function () {
-        if (opts.value !== undefined) {
-            self.set(opts.value);
+        if (opts.init !== undefined) {
+            self.set(opts.init);
         }
         else if (opts.min !== undefined) {
             self.set(opts.min);
@@ -109,6 +109,7 @@ Slider.prototype.set = function (value) {
         : (value - this.min) / (this.max - this.min)
     ;
     this.turtle.style.left = x * this._elementWidth();
+    value = Math.round(value * 1e10) / 1e10;
     this.emit('value', value);
 }
 
