@@ -1,6 +1,6 @@
 # slideways
 
-horizontal slider widget
+horizontal slider control widget
 
 # example
 
