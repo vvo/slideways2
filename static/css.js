@@ -16,7 +16,7 @@ module.exports = [
     'margin-top: 0px;',
     'margin-bottom: 0px;',
     'background-color: white;',
-    'border: 2px solid black;',
+    'border: 2px solid rgb(52,52,52);',
     'border-radius: 4px;',
   '}',
   '.slideways .turtle.pressed {',
@@ -27,10 +27,9 @@ module.exports = [
     'top: 10px;',
     'left: 4px;',
     'right: 4px;',
-    'background-color: black;',
     'height: 5px;',
     'background-color: rgb(96,96,96);',
-    'border: 2px solid black;',
+    'border: 2px solid rgb(52,52,52);',
     'border-radius: 3px;',
   '}'
 ].join('\n')
