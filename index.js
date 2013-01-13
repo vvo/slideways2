@@ -21,28 +21,43 @@ function Slider (opts) {
         }
         insertedCss = true;
     }
-    this.element = hyperglue(html);
+    var root = this.element = hyperglue(html);
     
-    var turtle = this.element.querySelector('.turtle');
-    var runner = this.element.querySelector('.runner');
+    var turtle = root.querySelector('.turtle');
+    var runner = root.querySelector('.runner');
     
     var down = false;
     
-    turtle.addEventListener('mousedown', function () { down = true });
-    turtle.addEventListener('mouseup', function () { down = false });
-    runner.addEventListener('mouseup', function () { down = false });
-    window.addEventListener('mouseup', function () { down = false });
-    
-    turtle.addEventListener('mousemove', onmove);
-    runner.addEventListener('mousemove', onmove);
+    turtle.addEventListener('mousedown', function (ev) {
+        ev.preventDefault();
+        turtle.className = 'turtle pressed';
+        down = {
+            x: ev.clientX - root.offsetLeft - turtle.offsetLeft
+        }
+    });
+    root.addEventListener('mousedown', function (ev) {
+        ev.preventDefault();
+    });
+    window.addEventListener('mouseup', mouseup);
+    window.addEventListener('mousemove', onmove);
     
     function onmove (ev) {
+        ev.preventDefault();
         if (!down) return;
         var style = {
-            runner: window.getComputedStyle(runner),
+            root: window.getComputedStyle(root),
             turtle: window.getComputedStyle(turtle)
         };
-        turtle.style.left = ev.clientX;
+        var w = num(style.root.width) - num(style.turtle.width)
+            - num(style.turtle['border-width'])
+        ;
+        var x = Math.max(0, Math.min(w, ev.clientX - root.offsetLeft - down.x));
+        turtle.style.left = x;
+    }
+    
+    function mouseup () {
+        down = true;
+        turtle.className = 'turtle';
     }
 }
 
@@ -53,4 +68,9 @@ Slider.prototype.appendTo = function (target) {
         target = document.querySelector(target);
     }
     target.appendChild(this.element);
-};
+}
+
+function num (s) {
+    return Number((/^(\d+)/.exec(s) || [0,0])[1]);
+}
+;
