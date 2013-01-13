@@ -53,6 +53,12 @@ values were provided when the `slider` was initialized.
 Each time the slider value changes, `slider` emits a `'value'` event with the
 new interpolated value.
 
+# attributes
+
+## slider.element
+
+html dom element container
+
 # install
 
 With [npm](https://npmjs.org) do:
