@@ -16,9 +16,15 @@ function Slider (opts) {
     this.min = opts.min;
     this.snap = opts.snap;
     
-    if (this.value) {
-        process.nextTick();
-    }
+    process.nextTick(function () {
+        if (opts.value !== undefined) {
+            self.set(opts.value);
+        }
+        else if (opts.min !== undefined) {
+            self.set(opts.min);
+        }
+        else self.set(0);
+    });
     
     if (!insertedCss && opts.insertCss !== false) {
         var style = document.createElement('style');
