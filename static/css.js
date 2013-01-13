@@ -6,7 +6,6 @@ module.exports = [
     'display: inline-block;',
     'height: 24px;',
     'width: 150px;',
-    'border: 1px solid red;',
   '}',
   '.slideways .turtle {',
     'position: absolute;',

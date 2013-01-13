@@ -12,8 +12,8 @@ function Slider (opts) {
     var self = this;
     
     if (!opts) opts = {};
-    this.max = opts.max;
-    this.min = opts.min;
+    this.max = opts.max === undefined ? 1 : opts.max;
+    this.min = opts.min === undefined ? 0 : opts.min;
     this.snap = opts.snap;
     
     process.nextTick(function () {
@@ -83,35 +83,21 @@ Slider.prototype.appendTo = function (target) {
 };
 
 Slider.prototype.interpolate = function (value) {
-    if (this.max === undefined || this.min === undefined) {
-        return this.snap
-            ? Math.round(value / this.snap) * this.snap
-            : value
-        ;
-    }
     var v = value * (this.max - this.min) + this.min;
     var res = this.snap
         ? Math.round(v / this.snap) * this.snap
         : v
     ;
-    if (this.min === undefined || this.max === undefined) {
-        return res;
-    }
     return Math.max(this.min, Math.min(this.max, res));
 };
 
 Slider.prototype.set = function (value) {
-    if (this.max !== undefined && this.min !== undefined) {
-        value = Math.max(this.min, Math.min(this.max, value));
-    }
-    var x = this.max === undefined || this.min === undefined
-        ? value
-        : (value - this.min) / (this.max - this.min)
-    ;
+    value = Math.max(this.min, Math.min(this.max, value));
+    var x = (value - this.min) / (this.max - this.min);
     this.turtle.style.left = x * this._elementWidth();
     value = Math.round(value * 1e10) / 1e10;
     this.emit('value', value);
-}
+};
 
 Slider.prototype._elementWidth = function () {
     var style = {
