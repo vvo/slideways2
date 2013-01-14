@@ -67,6 +67,8 @@ With [npm](https://npmjs.org) do:
 npm install slideways
 ```
 
+Use [browserify](http://browserify.org) to `require('slideways')`.
+
 # license
 
 MIT
