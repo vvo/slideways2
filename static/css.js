@@ -24,7 +24,7 @@ module.exports = [
   '}',
   '.slideways .runner {',
     'position: absolute;',
-    'top: 10px;',
+    'top: 8px;',
     'left: 4px;',
     'right: 4px;',
     'height: 5px;',
