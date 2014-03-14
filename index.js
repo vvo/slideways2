@@ -1,9 +1,12 @@
 var hyperglue = require('hyperglue');
 var EventEmitter = require('events').EventEmitter;
+var inherits = require('inherits');
 var html = require('./static/html');
 var css = require('./static/css');
 
 module.exports = Slider;
+inherits(Slider, EventEmitter);
+
 var insertedCss = false;
 
 function Slider (opts) {
@@ -72,8 +75,6 @@ function Slider (opts) {
         turtle.className = 'turtle';
     }
 }
-
-Slider.prototype = new EventEmitter;
 
 Slider.prototype.appendTo = function (target) {
     if (typeof target === 'string') {

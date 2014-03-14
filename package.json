@@ -4,7 +4,8 @@
     "description" : "horizontal slider control widget",
     "main" : "index.js",
     "dependencies" : {
-        "hyperglue" : "~0.1.1"
+        "hyperglue" : "~0.1.1",
+        "inherits": "~2.0.1"
     },
     "repository" : {
         "type" : "git",
