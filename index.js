@@ -16,12 +16,12 @@ function Slider (opts) {
     if (!(this instanceof Slider)) return new Slider(opts);
     EventEmitter.call(this);
     var self = this;
-    
+
     if (!opts) opts = {};
     this.max = opts.max === undefined ? 1 : opts.max;
     this.min = opts.min === undefined ? 0 : opts.min;
     this.snap = opts.snap;
-    
+
     process.nextTick(function () {
         if (opts.init !== undefined) {
             self.set(opts.init);
@@ -36,13 +36,15 @@ function Slider (opts) {
         insertedCss = true;
     }
     var root = this.element = domify(html);
-    
+
     var turtle = this.turtle = root.querySelector('.turtle');
     var runner = root.querySelector('.runner');
-    
+
     var down = false;
-    
+
     turtle.addEventListener('mousedown', function (ev) {
+        window.addEventListener('mousemove', onmove);
+
         ev.preventDefault();
         turtle.className = 'turtle pressed';
         down = {
@@ -52,9 +54,9 @@ function Slider (opts) {
     root.addEventListener('mousedown', function (ev) {
         ev.preventDefault();
     });
+
     window.addEventListener('mouseup', mouseup);
-    window.addEventListener('mousemove', onmove);
-    
+
     function onmove (ev) {
         ev.preventDefault();
         if (!down) return;
@@ -64,8 +66,9 @@ function Slider (opts) {
         if (isNaN(value)) return;
         self.set(self.interpolate(value));
     }
-    
+
     function mouseup () {
+        window.removeEventListener('mousemove', onmove);
         down = true;
         turtle.className = 'turtle';
     }
