@@ -46,7 +46,7 @@ function Slider (opts) {
         window.addEventListener('mousemove', onmove);
 
         ev.preventDefault();
-        turtle.className = 'turtle pressed';
+        turtle.className = turtle.className.replace('turtle', 'turtle pressed');
         down = {
             x: ev.clientX - root.offsetLeft - turtle.offsetLeft
         }
@@ -70,7 +70,7 @@ function Slider (opts) {
     function mouseup () {
         window.removeEventListener('mousemove', onmove);
         down = true;
-        turtle.className = 'turtle';
+        turtle.className = turtle.className.replace('pressed', '');
     }
 }
 
