@@ -5,14 +5,12 @@ horizontal slider control widget
 It's a fork of https://github.com/substack/slideways.
 
 Provides various enhancements compared to original version:
-- works in standard mode: 55234a7d9d05befac4d796f4dae56f714366cf30
-- toggle classNames instead of overwriting all css classes: 2bcfcf17dca27e75e378893cce3be9f56b155c86
-- do not disable text selection in the whole webpage: 34f71b03c711aabf7d6b13eb843dbca7e99a755f
+- works in standard mode
+- toggle classNames instead of overwriting all css classes
+- do not disable text selection in the whole webpage
 - and some minor repo/build enhancements
  
 # example
-
-[view this example](http://substack.net/projects/slideways2/)
 
 ``` js
 var slideways2 = require('slideways2');
@@ -23,6 +21,14 @@ var result = document.querySelector('#result');
 slider.on('value', function (value) {
   result.value = value;
 });
+```
+
+# dev
+
+To develop on this module, do this:
+
+```shell
+npm run dev
 ```
 
 # methods
