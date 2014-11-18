@@ -4,5 +4,5 @@ slider.appendTo('#slider');
 
 var result = document.querySelector('#result');
 slider.on('value', function (value) {
-    result.value = value;
+  result.value = value;
 });
